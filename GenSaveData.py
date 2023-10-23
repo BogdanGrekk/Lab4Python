@@ -11,17 +11,20 @@ class EmployeeDataGenerator:
         self.fake_data_generator = Faker()
 
     def generate_employee_record(self):
-        """Generates a random employee record."""
+        """Generates a random employee record with a Ukrainian-style patronymic in English context."""
         gender = 'male' if random.random() < 0.6 else 'female'
 
         if gender == 'male':
             first_name = self.fake_data_generator.first_name_male()
             last_name = self.fake_data_generator.last_name_male()
+            father_name = self.fake_data_generator.first_name_male()
+            middle_name = father_name + 'ovich'
         else:
             first_name = self.fake_data_generator.first_name_female()
             last_name = self.fake_data_generator.last_name_female()
+            father_name = self.fake_data_generator.first_name_male()
+            middle_name = father_name + 'ivna'
 
-        middle_name = self.fake_data_generator.first_name()
         dob = self.fake_data_generator.date_of_birth(tzinfo=None, minimum_age=15, maximum_age=85)
         job = self.fake_data_generator.job()
         city = self.fake_data_generator.city()
